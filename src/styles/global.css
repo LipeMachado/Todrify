@@ -8,6 +8,27 @@
     box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #181818;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #6FCF97;
+  border-radius: 14px;
+}
+
 body {
     font-family: 'Nunito Variable', sans-serif;
+}
+
+.text-clip-gradient {
+  background-clip: text;
+  background: linear-gradient(91deg, #F56693 0, #6FCF97 90.46%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
