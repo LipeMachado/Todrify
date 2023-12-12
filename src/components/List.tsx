@@ -29,8 +29,7 @@ export function List({ name, completed, id, removeTodo, handleCompleted }: ListP
     const randomColors = [
         'from-pink-700/30 via-violet-800/30 to-gray-900/30',
         'from-violet-700/30 via-blue-800/30 to-gray-900/30',
-        'from-purple-800/30 via-violet-900/30 to-purple-800/30',
-        'from-emerald-500/30 via-lime-700/30  to-gray-900/30'
+        'from-emerald-500/30 via-lime-700/30 to-gray-900/30'
     ];
 
     const randomizeColor = () => {

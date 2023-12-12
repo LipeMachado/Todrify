@@ -4,7 +4,7 @@ export function Toaster() {
     return (
         <>
             <ToasterProvider
-                position="top-right"
+                position="bottom-right"
                 reverseOrder={false}
                 toastOptions={{
                     success: {

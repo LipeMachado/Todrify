@@ -13,7 +13,6 @@ export default {
         'white': '#fff',
         'primaryGreen': '#6FCF97',
         'primaryGreenGrad': 'linear-gradient(91deg, #F56693 0, #6FCF97 90.46%)',
-        'buttonGradient11': 'linear-gradient(110.42deg, rgba(25, 151, 222, 0.1) 29.2%, rgba(168, 85, 247, 0.1) 63.56%)',
       },
       colors: {
         gray: {
@@ -38,10 +37,10 @@ export default {
         'shadow3': '0 14px 40px rgb(0 0 0 / 25%)',
       },
       fontSize: {
-        clamph1: "clamp(1.5rem, 2vw, 2.5rem)",
-        clampinput: "clamp(1rem, 2vw, 1.2rem)",
-        clampinputbutton: "clamp(1rem, 2vw, 1.2rem)",
-        clampicon: "clamp(1.2rem, 2vw, 2rem)",
+        'clamph1': "clamp(1.5rem, 2vw, 2.5rem)",
+        'clampinput': "clamp(1rem, 2vw, 1.2rem)",
+        'clampinputbutton': "clamp(1rem, 2vw, 1.2rem)",
+        'clampicon': "clamp(1.2rem, 2vw, 2rem)",
       },
     },
   },

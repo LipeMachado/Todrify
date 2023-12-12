@@ -118,17 +118,17 @@ export function App() {
   return (
     <>
       <Toaster />
-      <div className="min-h-screen py-20 px-[25rem] bg-bg3 overflow-hidden">
+      <div className="min-h-screen flex flex-col justify-center px-5 xl:px-80 py-10 lg:py-20 bg-bg3 overflow-hidden">
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-center bg-bg2 border-[1px] border-icons3 rounded-2xl mb-4 py-8 px-4 shadow-shadow3"
         >
           <h1
-            className="text-clamph1 font-extrabold text-primaryGreen"
+            className="text-clamph1 font-extrabold text-primaryGreen select-none"
           >
             Task Diária
           </h1>
-          <div className="my-4 mx-0 relative text-clampinput w-3/5 flex items-center justify-center text-gray-2">
+          <div className="my-4 mx-0 relative text-clampinput w-11/12 sm:w-3/5 flex-col sm:flex-row flex gap-4 sm:gap-0 items-center justify-center text-gray-2">
             <input
               type="text"
               value={value}
@@ -138,7 +138,7 @@ export function App() {
             />
             <div>
               <button
-                className="absolute top-0 right-0 cursor-pointer py-0 px-4 border-none bg-primaryGreen h-full rounded-r-[7px] text-white text-clampinputbutton transition-colors hover:bg-primary2"
+                className="block sm:absolute top-0 right-0 cursor-pointer py-3 px-6 sm:py-0 sm:px-4 border-none bg-primaryGreen h-full rounded sm:rounded-r-[7px] text-white text-clampinputbutton transition-colors hover:bg-primary2"
               >
                 + Add Tarefa
               </button>
@@ -150,18 +150,18 @@ export function App() {
           <SortableContext items={todos.map((todo) => todo.id)}>
             <ul className="overflow-hidden bg-bg2 p-[5rem] rounded-2xl shadow-shadow3 border-[1px] border-icons3">
               <div className="flex justify-between items-center mb-8">
-                <p className="text-clampinput font-semibold text-gray-2">
+                <p className="text-clampinput font-semibold text-gray-2 select-none">
                   Prioridade
                 </p>
                 <div className="">
                   <button
-                    className="py-[.5rem] px-4 rounded-[7px] bg-buttonGradient11 border-[1px] border-icons3 text-clampinputbutton cursor-pointer text-gray-1 transition-colors"
+                    className="py-[.5rem] px-4 rounded-[7px] bg-gradient-to-r from-[rgba(25,151,222,0.1)] via-[rgba(168,85,247,0.1)] border-[1px] border-icons3 text-clampinputbutton cursor-pointer text-gray-1 transition-colors"
                     onClick={gridHandler}
                   >
                     {toggleGrid ? <Columns /> : <Rows />}
                   </button>
                 </div>
-                <p className="text-clampinput font-semibold text-danger">Alta</p>
+                <p className="text-clampinput font-semibold text-danger select-none">Alta</p>
               </div>
               <div className={`${toggleGrid ? 'grid gap-4' : 'flex flex-col gap-2'} grid-cols-1 sm:grid-cols-2 transition-all`}>
                 {
