@@ -124,7 +124,7 @@ export function App() {
           className="flex flex-col items-center bg-bg2 border-[1px] border-icons3 rounded-2xl mb-4 py-8 px-4 shadow-shadow3"
         >
           <h1
-            className="text-clamph1 font-extrabold text-primaryGreen select-none"
+            className="text-clamph1 font-extrabold text-primary select-none"
           >
             Task Diária
           </h1>
@@ -138,7 +138,7 @@ export function App() {
             />
             <div>
               <button
-                className="block sm:absolute top-0 right-0 cursor-pointer py-3 px-6 sm:py-0 sm:px-4 border-none bg-primaryGreen h-full rounded sm:rounded-r-[7px] text-white text-clampinputbutton transition-colors hover:bg-primary2"
+                className="block sm:absolute top-0 right-0 cursor-pointer py-3 px-6 sm:py-0 sm:px-4 border-none bg-primary2 h-full rounded sm:rounded-r-[7px] text-white text-clampinputbutton transition-colors hover:bg-primary3"
               >
                 + Add Tarefa
               </button>

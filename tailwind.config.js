@@ -10,6 +10,7 @@ export default {
         'danger': '#fe6854',
         'primary': '#7263F3',
         'primary2': '#705DF2',
+        'primary3': '#9385f2',
         'white': '#fff',
         'primaryGreen': '#6FCF97',
         'primaryGreenGrad': 'linear-gradient(91deg, #F56693 0, #6FCF97 90.46%)',
