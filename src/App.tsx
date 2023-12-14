@@ -148,7 +148,7 @@ export function App() {
           <h1
             className="text-clamph1 font-extrabold text-primary select-none"
           >
-            Task Diária
+            Task's Diária
           </h1>
           <div className="my-4 mx-0 relative text-clampinput w-11/12 sm:w-3/5 flex-col sm:flex-row flex gap-4 sm:gap-0 items-center justify-center text-gray-2">
             <input
