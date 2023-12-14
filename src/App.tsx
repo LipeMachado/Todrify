@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
 import { myTodos } from "./data/todo"
 import { List } from './components/List'
 import { v4 as uuid } from 'uuid'
@@ -7,11 +7,16 @@ import { Toaster } from './components/Toaster'
 import { DndContext } from '@dnd-kit/core'
 import { SortableContext } from '@dnd-kit/sortable'
 import { Columns, Rows } from 'lucide-react'
+import { gsap } from 'gsap'
 
 export function App() {
   const [todos, setTodos] = useState(myTodos)
   const [value, setValue] = useState<string>('')
   const [toggleGrid, setToggleGrid] = useState(false)
+
+  const todosRef = useRef(null)
+  const todosCon = useRef(null)
+  const formRef = useRef(null)
 
   //Local Storage
   const saveToLocalStorage = (todos: any) => {
@@ -115,11 +120,28 @@ export function App() {
     }
   }
 
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power1.out', duration: 1 } })
+    tl.fromTo(todosRef.current,
+      { opacity: 0, x: 800 },
+      { opacity: 1, x: 0, duration: 0.5 }
+    )
+      .fromTo(todosCon.current,
+        { opacity: 0, y: 800, scale: 0.5 },
+        { opacity: 1, y: 0, duration: 0.5, scale: 1 }, '-=0.1'
+      )
+      .fromTo(formRef.current,
+        { opacity: 0, scale: 0.5 },
+        { opacity: 1, duration: 0.5, scale: 1 }, '-=0.5'
+      )
+  }, [])
+
   return (
     <>
       <Toaster />
-      <div className="min-h-screen flex flex-col justify-center px-5 xl:px-80 py-10 lg:py-20 bg-bg3 overflow-hidden">
+      <div className="min-h-screen flex flex-col justify-center px-5 xl:px-80 py-10 lg:py-18 bg-bg3 overflow-hidden">
         <form
+          ref={formRef}
           onSubmit={handleSubmit}
           className="flex flex-col items-center bg-bg2 border-[1px] border-icons3 rounded-2xl mb-4 py-8 px-4 shadow-shadow3"
         >
@@ -148,7 +170,13 @@ export function App() {
 
         <DndContext onDragEnd={handleDragEnd}>
           <SortableContext items={todos.map((todo) => todo.id)}>
-            <ul className="overflow-hidden bg-bg2 p-[5rem] rounded-2xl shadow-shadow3 border-[1px] border-icons3">
+            <ul
+              ref={todosCon}
+              className="overflow-hidden bg-bg2 px-[2rem] py-[4rem] sm:py-[2rem] sm:px-[5rem] rounded-2xl shadow-shadow3 border-[1px] border-icons3"
+            >
+              <div className="flex w-full justify-center items-center mb-10">
+                <p className="text-danger text-lg text-center">Clique duas vezes nos icones das tasks para executar a ação.</p>
+              </div>
               <div className="flex justify-between items-center mb-8">
                 <p className="text-clampinput font-semibold text-gray-2 select-none">
                   Prioridade
@@ -163,7 +191,10 @@ export function App() {
                 </div>
                 <p className="text-clampinput font-semibold text-danger select-none">Alta</p>
               </div>
-              <div className={`${toggleGrid ? 'grid gap-4' : 'flex flex-col gap-2'} grid-cols-1 sm:grid-cols-2 transition-all`}>
+              <div
+                ref={todosRef}
+                className={`${toggleGrid ? 'grid gap-4' : 'flex flex-col gap-2'} grid-cols-1 sm:grid-cols-2 transition-all`}
+              >
                 {
                   todos.map((todo) => {
                     const { id, name, completed } = todo

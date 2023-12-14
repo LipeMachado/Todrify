@@ -1,7 +1,8 @@
 import { CheckCircle2, Trash } from "lucide-react"
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from '@dnd-kit/utilities'
-import { useMemo } from "react"
+import { useEffect, useMemo, useRef } from "react"
+import { gsap } from 'gsap'
 
 interface ListProps {
     id: string
@@ -12,6 +13,9 @@ interface ListProps {
 }
 
 export function List({ name, completed, id, removeTodo, handleCompleted }: ListProps) {
+
+    const todoRef = useRef(null)
+    const nameRef = useRef(null)
 
     const {
         attributes,
@@ -40,6 +44,35 @@ export function List({ name, completed, id, removeTodo, handleCompleted }: ListP
         return randomizeColor();
     }, [])
 
+    const animateAndRemoveFromDom = () => {
+        gsap.to(todoRef.current, {
+            duration: 0.5,
+            opacity: 0,
+            x: 50,
+            onComplete: () => {
+                removeTodo(id)
+            }
+        })
+    }
+
+    useEffect(() => {
+        gsap.from(nameRef.current, {
+            duration: 0.5,
+            opacity: 0,
+            y: 20,
+            rotationX: 180,
+            delay: -0.1,
+            onComplete: () => {
+                gsap.to(nameRef.current, {
+                    duration: 0.5,
+                    opacity: 1,
+                    y: 0,
+                    rotationX: 0,
+                })
+            }
+        })
+    }, [completed])
+
     return (
         <>
             <div
@@ -50,9 +83,16 @@ export function List({ name, completed, id, removeTodo, handleCompleted }: ListP
                 ref={setNodeRef}
             >
                 <li
+                    ref={todoRef}
+                    onDoubleClick={animateAndRemoveFromDom}
                     className={`bg-gradient-to-r ${randomColorMemo} py-4 px-8 rounded-[5px] list-none border-[1px] border-icons shadow-shadow3 hover:cursor-pointer active:transform active:scale-[0.98]`}
                 >
-                    <p className={`text-clampinputbutton ${completed ? 'line-through' : ''} ${completed ? 'text-primaryGreen' : 'text-white'}`}>{name}</p>
+                    <p
+                        ref={nameRef}
+                        className={`text-clampinputbutton ${completed ? 'line-through' : ''} ${completed ? 'text-primaryGreen' : 'text-white'}`}
+                    >
+                        {name}
+                    </p>
                 </li>
                 <div className="flex gap-3 absolute right-0 top-1/2 transform -translate-y-1/2 px-[.9rem] py-[.4rem]">
                     <div
